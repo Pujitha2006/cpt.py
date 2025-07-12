@@ -40,3 +40,34 @@ arr=[170,45,75,90,802,24,2,66]
 print("Before sort: ",arr)
 radix_sort(arr)
 print("After sort: ",arr)
+
+
+
+#pancake sort:
+def flip(arr,k):
+    return arr[:k+1][::-1]+arr[k+1:]
+def pancake(arr):
+    n=len(arr)
+    for size in range(n,1,-1):
+        max_index=arr.index(max(arr[:size]))
+        if max_index!=size-1:
+            if max_index!=0:
+                arr=flip(arr,max_index)
+                print(f" flip at {max_index+1}:{arr}")
+            arr=flip(arr,size-1)
+            print(f"flip at {size}:{arr}")
+    return arr
+nums=list(map(int,input("Enter numbers separated with space: ").split()))
+sorted_nums=pancake(nums)
+print("sorted ",sorted_nums)
+#Output#
+Enter numbers separated with space:  9 1 4 7 3
+flip at 5:[3, 7, 4, 1, 9]
+ flip at 2:[7, 3, 4, 1, 9]
+flip at 4:[1, 4, 3, 7, 9]
+ flip at 2:[4, 1, 3, 7, 9]
+flip at 3:[3, 1, 4, 7, 9]
+flip at 2:[1, 3, 4, 7, 9]
+sorted  [1, 3, 4, 7, 9]
+
+
