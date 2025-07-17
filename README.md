@@ -72,4 +72,17 @@ sorted  [1, 3, 4, 7, 9]
 
 
 
-
+with open ("file1.txt",'w')as f:
+    f.write("Pujitha Shankar")
+with open("file1.txt",'r+')as f:
+    data=f.read()
+    print("Previous:",data)
+    new_data=data.replace("Shankar","Suresh")
+    f.seek(0)
+    f.write(new_data)
+    f.truncate()
+with open("file1.txt",'r')as f:
+    print("Latest:",f.read())
+## Output:
+Previous: Pujitha Shankar
+Latest: Pujitha Suresh
